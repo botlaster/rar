@@ -1,0 +1,18 @@
+history.pushState(null, null, location.href);
+window.onpopstate = function(event) {
+    history.go(1);
+};
+//ห้ามกดย้อนกลับหลัง
+
+function disableF5(e) { if ((e.which || e.keyCode) == 116 || (e.which || e.keyCode) == 82) e.preventDefault(); };
+
+$(document).ready(function(){
+     $(document).on("keydown", disableF5);
+});
+//ไม่ให้กด f5
+
+if(typeof window.history.pushState == 'function') 
+{
+    window.history.pushState({}, "Hide", '<?php echo $_SERVER['PHP_SELF'];?>');
+}
+//ลบ $_GET ออกจาก URL
